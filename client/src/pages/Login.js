@@ -3,7 +3,7 @@ import React, {useState, useContext} from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 import { AuthContext } from '../context/auth';
-
+import Image from "../components/Image";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ function Login() {
         const reqBody = {email, password}
         axios.post('/api/auth/login', reqBody)
         .then(response => {
-            console.log('login works');
+            //console.log('login works');
             const token = response.data.authToken 
             storeToken(token)
             verifyStoredToken()
@@ -36,22 +36,29 @@ function Login() {
 
     return (
         <>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
+        <div className="mainDiv">
+            <div className="loginForm">
+                <form onSubmit={handleSubmit}>
 
-            <label htmlFor="email">Email</label>
-            <input type='email' name='email' value={email} onChange={handleEmail} />
+                <label htmlFor="email">Email</label>
+                <input type='email' name='email' value={email} onChange={handleEmail} />
 
-            <label htmlFor="password">Password</label>
-            <input type='password' name='password' value={password} onChange={handlePassword}/>
+                <label htmlFor="password">Password</label>
+                <input type='password' name='password' value={password} onChange={handlePassword}/>
 
-            <button type="submit">Log In</button>
+                <button className='authButton' type="submit">Log In</button>
 
-            </form>
+                </form>
             
-            {errorMessage && <h5>{errorMessage}</h5>}
-            <h3>Don't have an account?</h3>
-			<Link to='/signup'>Signup</Link>
+                {errorMessage && <h5>{errorMessage}</h5>}
+                
+                <h3>Don't have an account?</h3>
+                <Link to = '/signup'>
+                    <button className='authButton'>Sign up</button>
+                </Link>
+            </div>
+            <Image/>
+        </div>
         </>
     )
 }

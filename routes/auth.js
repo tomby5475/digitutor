@@ -30,8 +30,8 @@ router.post('/signup', (req, res, next) => {
 			// create the new user
 			return User.create({ role, username, email, password: hashedPassword, discipline, phone, addinfo })
 				.then(createdUser => {
-					const { email, username, _id } = createdUser
-					const user = { email, username, _id }
+					const { email, username, _id, role, discipline, phone, addinfo } = createdUser
+					const user = { email, username, _id, role, discipline, phone, addinfo }
 					res.status(201).json({ user: user })
 				})
 				.catch(err => {
@@ -55,8 +55,8 @@ router.post('/login', (req, res, next) => {
 			}
 			const passwordCorrect = bcrypt.compareSync(password, foundUser.password)
 			if (passwordCorrect) {
-				const { _id, email, username } = foundUser
-				const payload = { _id, email, username }
+				const { _id, email, username, role, discipline, phone, addinfo } = foundUser
+				const payload = { _id, email, username, role, discipline, phone, addinfo }
 				// create the json web token
 				const authToken = jwt.sign(
 					payload,
@@ -72,13 +72,12 @@ router.post('/login', (req, res, next) => {
 			console.log(err)
 			res.status(500).json({ message: 'Internal Server Error' })
 		})
-
-		router.get('/verify', isAuthenticated, (req, res, next) => {
-			// if the token is valid we can access it on : req.payload
-			console.log('request payload is: ', req.payload)
+});
+router.get('/verify', isAuthenticated, (req, res, next) => {
+	//if the token is valid we can access it on : req.payload
+	console.log('request payload is: ', req.payload)
 			res.status(200).json(req.payload)
 		});
-});
 
 module.exports = router;
 

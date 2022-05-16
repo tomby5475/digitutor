@@ -44,6 +44,7 @@ function Signup() {
 
             <label htmlFor='role'>Your role</label>
             <select name="role" id="role" value={role} onChange={handleRole}>
+            <option>Role</option>
             <option value="student">Student</option>
             <option value="tutor">Tutor</option>
             </select>
@@ -76,6 +77,7 @@ function Signup() {
             <button type="submit">Sign up</button>
         
             </form>
+            {errorMessage && <h5>{errorMessage}</h5>}
         </div>
     </>
     )

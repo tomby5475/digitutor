@@ -10,13 +10,13 @@ import mathImg from '../images/math.png'
 function Image() {
     return (
         <div className='mainPageImage'>
-            <img src={mainImage} alt="Student" />
-            <img src={biologyImg} alt="biology" />
-            <img src={physicsImg} alt="physics" />
-            <img src={socialImg} alt="social studies" />
-            <img src={geographyImg} alt="geography" />
-            <img src={historyImg} alt="history" />
-            <img src={mathImg} alt="math" />
+            <img className="mainPageStudent" src={mainImage} alt="Student" />
+            <img className="descipline biology" src={biologyImg} alt="biology" />
+            <img className="descipline physics" src={physicsImg} alt="physics" />
+            <img className="descipline social" src={socialImg} alt="social studies" />
+            <img className="descipline geography" src={geographyImg} alt="geography" />
+            <img className="descipline history" src={historyImg} alt="history" />
+            <img className="descipline math" src={mathImg} alt="math" />
         </div>
     )
 }

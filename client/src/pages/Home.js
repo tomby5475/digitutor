@@ -8,7 +8,7 @@ function Home() {
             <div className="homePage">
                 <h1>Your Personal Digital Tutor</h1>
                 <Link to = '/signup'>
-                    <button>Sign up</button>
+                    <button className='authButton'>Sign up</button>
                 </Link>
             </div>
             <Image/>
