@@ -24,14 +24,12 @@ function AuthProviderWrapper(props) {
 					setUser(user)
 					setIsLoggedIn(true)
 					setIsLoading(false)
-
 				})
 				.catch(err => {
 					// the token is invalid
 					setIsLoggedIn(false)
 					setUser(null)
 					setIsLoading(false)
-
 				})
 		} else {
 			// there is no token in local storage
@@ -44,7 +42,6 @@ function AuthProviderWrapper(props) {
 		// update the state
 		setIsLoggedIn(false)
 		setUser(null)
-
 	}
     useEffect(() => {
 		verifyStoredToken()

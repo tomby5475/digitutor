@@ -35,18 +35,18 @@ function Login() {
 	const handlePassword = e => setPassword(e.target.value)
 
     return (
-        <>
+    
         <div className="mainDiv">
             <div className="loginForm">
                 <form onSubmit={handleSubmit}>
 
-                <label htmlFor="email">Email</label>
-                <input type='email' name='email' value={email} onChange={handleEmail} />
+                    <label htmlFor="email">Email</label>
+                    <input type='email' name='email' value={email} onChange={handleEmail} />
 
-                <label htmlFor="password">Password</label>
-                <input type='password' name='password' value={password} onChange={handlePassword}/>
+                    <label htmlFor="password">Password</label>
+                    <input type='password' name='password' value={password} onChange={handlePassword}/>
 
-                <button className='authButton' type="submit">Log In</button>
+                    <button className='authButton' type="submit">Log in</button>
 
                 </form>
             
@@ -59,7 +59,7 @@ function Login() {
             </div>
             <Image/>
         </div>
-        </>
+        
     )
 }
 

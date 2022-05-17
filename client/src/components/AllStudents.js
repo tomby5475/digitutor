@@ -22,18 +22,31 @@ export default function AllStudents() {
             getAllStudents()
         }, [])
         return (
-            <>
+            <div className="allUsers">
                 <h2>All Students</h2>
-                {users.map((user) => (
-                    user.role === 'student' ? 
-                    <div key={user._id}>
-                    <h3>{user.username}</h3>
-                    <p>{user.discipline}</p>
-                    <p>{user.email}</p>
-                    </div> : 
-                    user === false
-                ))}
-            </>
+                <table className="allUsersTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Discipline</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        {users.map((user) => (
+                        user.role === 'student' ? 
+                        <tbody>
+                            <tr  key={user._id}>
+                                <td>{user.username}</td>
+                                <td>{user.discipline}</td>
+                                <td>{user.email}</td>
+                            </tr>
+                        </tbody>
+                        : 
+                        user === false
+                    ))}
+                </table> 
+                
+            </div>
         )
     }
 

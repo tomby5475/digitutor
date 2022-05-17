@@ -23,18 +23,31 @@ export default function AllTutors() {
         }, [])
         //console.log(users[0]);
         return (
-            <>
-                <h2>All Tutors</h2>
-                {users.map((user) => (
+            <div className="allUsers">
+            <h2>All Tutors</h2>
+            <table className="allUsersTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Discipline</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    {users.map((user) => (
                     user.role === 'tutor' ? 
-                    <div key={user._id}>
-                    <h3>{user.username}</h3>
-                    <p>{user.discipline}</p>
-                    <p>{user.email}</p>
-                    </div> : 
+                    <tbody>
+                        <tr  key={user._id}>
+                            <td>{user.username}</td>
+                            <td>{user.discipline}</td>
+                            <td>{user.email}</td>
+                        </tr>
+                    </tbody>
+                    : 
                     user === false
                 ))}
-            </>
+            </table> 
+            
+        </div>
         )
     }
 

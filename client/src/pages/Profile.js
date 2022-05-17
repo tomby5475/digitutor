@@ -7,11 +7,9 @@ function Profile(){
 
     const { user } = useContext(AuthContext)
 
-    console.log("user2", user)
-
     return (
         <>
-        {user && <h1>Hello {user.username}</h1>}
+        {user && <h3>Hello {user.username}</h3>}
 
         <h3>Contact information</h3>
         {user && <p>Email: {user.email}</p>}

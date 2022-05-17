@@ -10,10 +10,11 @@ import Login from './pages/Login';
 import AllTutors from './components/AllTutors';
 import { AuthContext } from './context/auth';
 import AllStudents from './components/AllStudents';
-
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const { isLoggedIn, logoutUser } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   
   return (
     <div className="App">
@@ -23,20 +24,42 @@ function App() {
               <img className="icon" src={icon} alt="Icon" />
               <img className="logo" src={logo} alt="Digitutor" />
             </Link> 
-            { isLoggedIn ? 
-              (
+            { isLoggedIn && ( 
+              <>
                 <button className='logoutButton' onClick={logoutUser}>Log out</button>
-              ) : (
+                <Link to='/profile'><button>Profile</button></Link>
+              </>
+              )}
+            { !isLoggedIn && (
+              <>
                 <Link to='/login'>
                   <button className='authButton'>Login</button>
                 </Link>
-              )
-            }
+              </>
+              )}
           </nav>
         </header>
-   
+
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/profile' element={
+            <ProtectedRoute redirectTo='/login'>
+                <Profile />
+            </ProtectedRoute>
+          }
+          />
+          <Route path='/tutors' element={
+            <ProtectedRoute redirectTo='/login'>
+                <AllTutors />
+            </ProtectedRoute>
+          }
+          />
+          <Route path='/students' element={
+            <ProtectedRoute redirectTo='/login'>
+                <AllStudents />
+            </ProtectedRoute>
+          }
+          />
           <Route path='/signup' element={<Signup />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/login' element={<Login />} />
