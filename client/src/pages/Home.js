@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import React from 'react';
+import React, {useContext} from 'react';
 import Image from "../components/Image";
+import { AuthContext } from '../context/auth'
 
 function Home() {
+    const { isLoggedIn } = useContext(AuthContext)
     return (
         <div className="mainDiv">
             <div className="homePage">
@@ -10,6 +12,9 @@ function Home() {
                 <Link to = '/signup'>
                     <button className='authButton'>Sign up</button>
                 </Link>
+                { isLoggedIn && 
+                <Link to='/profile'><button className='authButton'>Profile</button></Link>
+                }
             </div>
             <Image/>
         </div>

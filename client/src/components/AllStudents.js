@@ -5,7 +5,6 @@ import axios from "axios"
 export default function AllStudents() {
     
     const [users, setUsers] = useState([])
-
     
     const storedToken = localStorage.getItem('authToken')
     

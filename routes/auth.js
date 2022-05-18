@@ -3,11 +3,25 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { isAuthenticated } = require('../middleware/jwt')
 const User = require('../models/User.model')
+const fileUploader = require('../config/cloudinary.config')
 
+router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
+	console.log("file is: ", req.file)
+   
+	if (!req.file) {
+	  next(new Error("No file uploaded!"));
+	  return;
+	}
+	
+	// Get the URL of the uploaded file and send it as a response.
+	// 'secure_url' can be any name, just make sure you remember to use the same when accessing it on the frontend
+	
+	res.json({ fileUrl: req.file.path });
+  });
 
 router.post('/signup', (req, res, next) => {
-    console.log(req.body);
-	const { email, password, username, role, discipline, phone, addinfo} = req.body
+    //console.log(req.body);
+	const { email, password, username, role, discipline, phone, addinfo, imageUrl} = req.body
 	if (email === '' || password === '' || username === '') {
 		res.status(400).json({ message: 'Provide email, password and name' })
 		return
@@ -28,11 +42,16 @@ router.post('/signup', (req, res, next) => {
 			const salt = bcrypt.genSaltSync();
 			const hashedPassword = bcrypt.hashSync(password, salt)
 			// create the new user
-			return User.create({ role, username, email, password: hashedPassword, discipline, phone, addinfo })
+			return User.create({ role, username, email, password: hashedPassword, discipline, phone, addinfo, imageUrl })
 				.then(createdUser => {
-					const { email, username, _id, role, discipline, phone, addinfo } = createdUser
-					const user = { email, username, _id, role, discipline, phone, addinfo }
-					res.status(201).json({ user: user })
+					const { email, username, _id, role, discipline, phone, addinfo, imageUrl } = createdUser
+					const payload = { email, username, _id, role, discipline, phone, addinfo, imageUrl}
+					const authToken = jwt.sign(
+						payload,
+						process.env.JWT_SECRET,
+						{ algorithm: 'HS256', expiresIn: '12h' }
+					)
+					res.status(201).json({ user: payload, authToken })
 				})
 				.catch(err => {
 					console.log(err)
@@ -55,8 +74,8 @@ router.post('/login', (req, res, next) => {
 			}
 			const passwordCorrect = bcrypt.compareSync(password, foundUser.password)
 			if (passwordCorrect) {
-				const { _id, email, username, role, discipline, phone, addinfo } = foundUser
-				const payload = { _id, email, username, role, discipline, phone, addinfo }
+				const { _id, email, username, role, discipline, phone, addinfo, imageUrl } = foundUser
+				const payload = { _id, email, username, role, discipline, phone, addinfo, imageUrl }
 				// create the json web token
 				const authToken = jwt.sign(
 					payload,

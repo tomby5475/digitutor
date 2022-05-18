@@ -14,7 +14,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const { isLoggedIn, logoutUser } = useContext(AuthContext)
-  const { user } = useContext(AuthContext)
   
   return (
     <div className="App">
@@ -27,7 +26,6 @@ function App() {
             { isLoggedIn && ( 
               <>
                 <button className='logoutButton' onClick={logoutUser}>Log out</button>
-                <Link to='/profile'><button>Profile</button></Link>
               </>
               )}
             { !isLoggedIn && (
@@ -42,12 +40,12 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/profile' element={
+          {/* <Route path='/profile' element={
             <ProtectedRoute redirectTo='/login'>
                 <Profile />
             </ProtectedRoute>
           }
-          />
+          /> */}
           <Route path='/tutors' element={
             <ProtectedRoute redirectTo='/login'>
                 <AllTutors />

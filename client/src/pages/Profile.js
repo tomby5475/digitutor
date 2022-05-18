@@ -11,6 +11,8 @@ function Profile(){
         <>
         {user && <h3>Hello {user.username}</h3>}
 
+        {user && <img src={user.imageUrl} alt='User'></img> }
+
         <h3>Contact information</h3>
         {user && <p>Email: {user.email}</p>}
         {user && <p>Phone: {user.phone}</p>}
