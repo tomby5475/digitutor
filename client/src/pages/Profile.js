@@ -8,32 +8,28 @@ function Profile(){
     const { user } = useContext(AuthContext)
 
     return (
-        <>
-        {user && <h3>Hello {user.username}</h3>}
-
-        {user && <img src={user.imageUrl} alt='User'></img> }
-
-        <h3>Contact information</h3>
-        {user && <p>Email: {user.email}</p>}
-        {user && <p>Phone: {user.phone}</p>}
-
-        <h3>General information</h3>
-        {user && <p>Role: {user.role}</p>}
-        {user && <p>Discipline: {user.discipline}</p>}
-        {user && <p>About: {user.addinfo}</p>}
-
-        { user && user.role === 'tutor' ? 
-        (
-            <Link to = '/students'>
-                <button>All Students</button>
-            </Link>
-        ) : (
-            <Link to = '/tutors'>
-                <button>All Tutors</button>
-            </Link>
-        )
-        }
-        </>
+        <div className='profileDiv'>
+            {user && <h3>Hello {user.username}</h3>}
+            {user && <img className='profileImage' src={user.imageUrl} alt='User'></img> }
+            <h3>Contact information</h3>
+            {user && <p>Email: {user.email}</p>}
+            {user && <p>Phone: {user.phone}</p>}
+            <h3>General information</h3>
+            {user && <p>Role: {user.role}</p>}
+            {user && <p>Discipline: {user.discipline}</p>}
+            {user && <p>About: {user.addinfo}</p>}
+            { user && user.role === 'tutor' ? 
+                (
+                <Link to = '/students'>
+                    <button className='authButton'>All Students</button>
+                </Link>
+            ) : (
+                <Link to = '/tutors'>
+                    <button className='authButton'>All Tutors</button>
+                </Link>
+            )
+            }
+        </div>
     )
 }
 

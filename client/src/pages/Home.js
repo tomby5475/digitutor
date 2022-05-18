@@ -9,12 +9,11 @@ function Home() {
         <div className="mainDiv">
             <div className="homePage">
                 <h1>Your Personal Digital Tutor</h1>
+                <h4>connect and learn</h4>
                 <Link to = '/signup'>
                     <button className='authButton'>Sign up</button>
                 </Link>
-                { isLoggedIn && 
-                <Link to='/profile'><button className='authButton'>Profile</button></Link>
-                }
+                
             </div>
             <Image/>
         </div>
