@@ -21,11 +21,11 @@ function Profile(){
             { user && user.role === 'tutor' ? 
                 (
                 <Link to = '/students'>
-                    <button className='authButton'>All Students</button>
+                    <button className='authButton allUsersButton'>All Students</button>
                 </Link>
             ) : (
                 <Link to = '/tutors'>
-                    <button className='authButton'>All Tutors</button>
+                    <button className='authButton allUsersButton'>All Tutors</button>
                 </Link>
             )
             }

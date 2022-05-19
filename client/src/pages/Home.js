@@ -13,7 +13,6 @@ function Home() {
                 <Link to = '/signup'>
                     <button className='authButton'>Sign up</button>
                 </Link>
-                
             </div>
             <Image/>
         </div>

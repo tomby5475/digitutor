@@ -26,6 +26,7 @@ export default function AllStudents() {
                 <table className="allUsersTable">
                     <thead>
                         <tr>
+                            <th>Photo</th>
                             <th>Name</th>
                             <th>Discipline</th>
                             <th>Email</th>
@@ -36,6 +37,7 @@ export default function AllStudents() {
                             user.role === 'student' ? 
                     <tbody>
                         <tr key={user._id}>
+                            <td><img style={{width: '50px'}} src={user.imageUrl} alt='User'></img></td>
                             <td>{user.username}</td>
                             <td>{user.discipline}</td>
                             <td>{user.email}</td>

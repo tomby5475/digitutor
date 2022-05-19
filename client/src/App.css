@@ -170,6 +170,27 @@ h1 {
 .profileDiv img, p, h3 {
   margin: 5px;
 }
-.allList {
-
+.allUsers h2 {
+  margin: 0;
+}
+.searchSection {
+  margin: 20px;
+}
+.searchSection input {
+  padding: 5px;
+  border-radius: 5px; 
+  border: 1px solid #696969;
+}
+.allUsersTable {
+  width: 40%;
+}
+.allUsersButton {
+  margin-top: 20px;
+}
+.loginForm h3 {
+  margin-top: 50px;
+}
+.mainDivSignup {
+  width: 240px;
+  margin-top: 15px;
 }

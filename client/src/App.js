@@ -19,59 +19,48 @@ function App() {
 
   return (
     <div className="App">
-        <header className="App-header">
-          <nav className="navLogo">
-            <Link to='/'> 
-              <img className="icon" src={icon} alt="Icon" />
-              <img className="logo" src={logo} alt="Digitutor" />
-            </Link> 
-            <div>
+      <header className="App-header">
+        <nav className="navLogo">
+          <Link to='/'> 
+            <img className="icon" src={icon} alt="Icon" />
+            <img className="logo" src={logo} alt="Digitutor" />
+          </Link> 
+          <div>
             { isLoggedIn && location.pathname !=="/profile" && location.pathname !=="/signup" &&
-                <Link to='/profile'><button className='authButton'>Profile</button></Link>
-                }
+              <Link to='/profile'><button className='authButton'>Profile</button></Link>
+            }
             { isLoggedIn && ( 
-              <>
+              <Link to='/'>
                 <button className='logoutButton' onClick={logoutUser}>Log out</button>
-              </>
-              )}
+              </Link>
+            )}
             { !isLoggedIn && (
-              <>
                 <Link to='/login'>
-                  <button className='authButton'>Login</button>
+                  <button className='authButton'>Log in</button>
                 </Link>
-              </>
-              )}
-              </div>
-          </nav>
-        </header>
+            )}
+          </div>
+        </nav>
+      </header>
 
-        <Routes>
-          <Route path='/' element={<Home />} />
-          {/* <Route path='/profile' element={
-            <ProtectedRoute redirectTo='/login'>
-                <Profile />
-            </ProtectedRoute>
-          }
-          /> */}
-          <Route path='/tutors' element={
-            <ProtectedRoute redirectTo='/login'>
-                <AllTutors />
-            </ProtectedRoute>
-          }
-          />
-          <Route path='/students' element={
-            <ProtectedRoute redirectTo='/login'>
-                <AllStudents />
-            </ProtectedRoute>
-          }
-          />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/tutors' element={<AllTutors />} />
-          <Route path='/students' element={<AllStudents />} />
-        </Routes>
-
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/tutors' element={
+          <ProtectedRoute redirectTo='/login'>
+            <AllTutors />
+          </ProtectedRoute>
+        }/>
+        <Route path='/students' element={
+          <ProtectedRoute redirectTo='/login'>
+            <AllStudents />
+          </ProtectedRoute>
+        }/>
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/tutors' element={<AllTutors />} />
+        <Route path='/students' element={<AllStudents />} />
+      </Routes>
     </div>
   );
 }
