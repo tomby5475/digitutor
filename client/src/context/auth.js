@@ -30,12 +30,12 @@ function AuthProviderWrapper(props) {
 					setIsLoading(false)
 				})
 		} else {
-			// there is no token in local storage
+			// there is no token in the local storage
 			setIsLoading(false)
 		}
 	}
 	const logoutUser = () => {
-		// remove the token from local storage
+		// remove the token from the local storage
 		localStorage.removeItem('authToken')
 		// update the state
 		setIsLoggedIn(false)
