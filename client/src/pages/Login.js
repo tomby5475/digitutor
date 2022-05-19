@@ -42,10 +42,8 @@ function Login() {
                     <button className='authButton' type="submit">Log in</button>
                 </form>
                 {errorMessage && <h5>{errorMessage}</h5>}             
-                <h3>Don't have an account?</h3>
-                <Link to = '/signup'>
-                    <button className='authButton mainDivSignup'>Sign up</button>
-                </Link>
+                <p>Don't have an account?</p>
+                <Link to = '/signup'>Sign up</Link>
             </div>
             <Image/>
         </div>

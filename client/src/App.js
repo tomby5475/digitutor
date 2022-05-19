@@ -34,7 +34,7 @@ function App() {
                 <button className='logoutButton' onClick={logoutUser}>Log out</button>
               </Link>
             )}
-            { !isLoggedIn && (
+            { !isLoggedIn && location.pathname !=="/login" && (
                 <Link to='/login'>
                   <button className='authButton'>Log in</button>
                 </Link>

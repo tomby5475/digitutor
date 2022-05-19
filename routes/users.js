@@ -1,8 +1,6 @@
 const router = require("express").Router();
 const User = require('../models/User.model')
 
-
-// get a user info
 router.get('/:id', (req, res, next) => {
   User.findById(req.params.id)
     .then(user => {
@@ -15,6 +13,14 @@ router.get('/', (req, res, next) => {
   User.find()
     .then(users => {
       res.status(200).json(users)
+    })
+    .catch(err => next(err))
+});
+
+router.delete('/:id', (req, res, next) => {
+  User.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.status(200).json({ message: 'profile deleted' })
     })
     .catch(err => next(err))
 });

@@ -3,14 +3,12 @@ import axios from 'axios'
 
 const AuthContext = React.createContext()
 
-
 function AuthProviderWrapper(props) {
     const [user, setUser] = useState(null)
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
     const storeToken = token => {
-		// store this token in local storage
 		localStorage.setItem('authToken', token)
 	}
 

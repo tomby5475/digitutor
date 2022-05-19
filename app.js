@@ -30,8 +30,8 @@ app.use("/api/tutors", tutors);
 const students = require('./routes/users')
 app.use('/api/students', students)
 
-// const upload = require('./routes/auth')
-// app.use('/api/upload', upload)
+const profile = require('./routes/users')
+app.use('/api/profile', profile)
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

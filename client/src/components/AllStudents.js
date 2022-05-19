@@ -19,35 +19,35 @@ export default function AllStudents() {
     useEffect(() => {
         getAllStudents()
     }, [])
-        return (
-            <div className="allUsers">
-                <h2>All Students</h2>
-                <SearchBar setInputText={setInputText}/>
-                <table className="allUsersTable">
-                    <thead>
-                        <tr>
-                            <th>Photo</th>
-                            <th>Name</th>
-                            <th>Discipline</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    {users.filter((user) => {return user.discipline.toLowerCase().includes(inputText) })
-                          .map((user) => (
-                            user.role === 'student' ? 
-                    <tbody>
-                        <tr key={user._id}>
-                            <td><img style={{width: '50px'}} src={user.imageUrl} alt='User'></img></td>
-                            <td>{user.username}</td>
-                            <td>{user.discipline}</td>
-                            <td>{user.email}</td>
-                        </tr>
-                    </tbody>
-                    : 
-                    user === false
-                    ))}
-                </table> 
-            </div>
-        )
-    }
+    return (
+        <div className="allUsers">
+            <h2>All Students</h2>
+            <SearchBar setInputText={setInputText}/>
+            <table className="allUsersTable">
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Discipline</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                {users.filter((user) => {return user.discipline.toLowerCase().includes(inputText) })
+                    .map((user) => (
+                    user.role === 'student' ? 
+                <tbody>
+                    <tr key={user._id}>
+                        <td><img style={{width: '50px'}} src={user.imageUrl} alt='User'></img></td>
+                        <td>{user.username}</td>
+                        <td>{user.discipline}</td>
+                        <td>{user.email}</td>
+                    </tr>
+                </tbody>
+                : 
+                user === false
+                ))}
+            </table> 
+        </div>
+    )
+}
 

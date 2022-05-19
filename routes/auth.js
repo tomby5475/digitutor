@@ -6,21 +6,15 @@ const User = require('../models/User.model')
 const fileUploader = require('../config/cloudinary.config')
 
 router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
-	console.log("file is: ", req.file)
    
 	if (!req.file) {
 	  next(new Error("No file uploaded!"));
 	  return;
 	}
-	
-	// Get the URL of the uploaded file and send it as a response.
-	// 'secure_url' can be any name, just make sure you remember to use the same when accessing it on the frontend
-	
 	res.json({ fileUrl: req.file.path });
   });
 
 router.post('/signup', (req, res, next) => {
-    //console.log(req.body);
 	const { email, password, username, role, discipline, phone, addinfo, imageUrl} = req.body
 	if (email === '' || password === '' || username === '') {
 		res.status(400).json({ message: 'Provide email, password and name' })
@@ -30,7 +24,6 @@ router.post('/signup', (req, res, next) => {
 		res.status(400).json({ message: 'Password has to be 4 chars min' })
 		return
 	}
-	// check the database if a user with the same email exists
 	User.findOne({ email })
 		.then(foundUser => {
 			// if the user already exists send an error
@@ -94,7 +87,6 @@ router.post('/login', (req, res, next) => {
 });
 router.get('/verify', isAuthenticated, (req, res, next) => {
 	//if the token is valid we can access it on : req.payload
-	console.log('request payload is: ', req.payload)
 			res.status(200).json(req.payload)
 		});
 
