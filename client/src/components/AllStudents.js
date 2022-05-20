@@ -7,6 +7,8 @@ export default function AllStudents() {
     const [users, setUsers] = useState([])
     const [inputText, setInputText] = useState("")
     const storedToken = localStorage.getItem('authToken')
+
+    console.log("test");
     
     const getAllStudents = () => {
         axios.get('/api/students', { headers: { Authorization: `Bearer ${storedToken}` } })
