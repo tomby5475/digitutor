@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: "https://digitutor.herokuapp.com/"
+  baseURL: "http://localhost:5005/api"
 });
 
 const errorHandler = err => {

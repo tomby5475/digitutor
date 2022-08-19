@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import React, {useContext} from 'react';
+import React from 'react';
 import Image from "../components/Image";
 //import { AuthContext } from '../context/auth'
+//import {useContext} from 'react'
 
 function Home() {
     //const { isLoggedIn } = useContext(AuthContext)
